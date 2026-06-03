@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tool & Equipment Tracking Assistant</title>
+    <link rel="stylesheet" href="project.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="header">
+        <div>
+          <h1>Tool & Equipment Tracking Assistant</h1>
+          <p>
+            Track tools, assignments, job sites, due dates, and weekly reports.
+          </p>
+        </div>
+
+        <button id="logoutBtn" class="secondary-btn hidden">Logout</button>
+      </header>
+
+      <section id="loginSection" class="card login-card">
+        <h2>Login</h2>
+        <p class="muted">Enter your name to access the dashboard.</p>
+
+        <div class="form-row">
+          <input type="text" id="loginName" placeholder="Enter your name" />
+          <button id="loginBtn">Login</button>
+        </div>
+      </section>
+
+      <main id="dashboard" class="hidden">
+        <section class="stats-grid">
+          <div class="stat-card">
+            <h3>Total Tools</h3>
+            <p id="totalTools">0</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>Available</h3>
+            <p id="availableTools">0</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>In Use</h3>
+            <p id="inUseTools">0</p>
+          </div>
+
+          <div class="stat-card danger">
+            <h3>Overdue</h3>
+            <p id="overdueTools">0</p>
+          </div>
+        </section>
+
+        <section class="grid-layout">
+          <div class="card">
+            <h2>Add Tool</h2>
+
+            <div class="form-group">
+              <label>Tool Name</label>
+              <input
+                type="text"
+                id="toolName"
+                placeholder="Example: Hilti Drill"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Tool ID</label>
+              <input type="text" id="toolId" placeholder="Example: T001" />
+            </div>
+
+            <div class="form-group">
+              <label>Current Site</label>
+              <input type="text" id="toolSite" placeholder="Example: Site A" />
+            </div>
+
+            <button id="addToolBtn">Add Tool</button>
+          </div>
+
+          <div class="card">
+            <h2>Assign Tool</h2>
+
+            <div class="form-group">
+              <label>Select Tool</label>
+              <select id="assignToolSelect"></select>
+            </div>
+
+            <div class="form-group">
+              <label>Assigned To</label>
+              <input type="text" id="assignedTo" placeholder="Example: Ali" />
+            </div>
+
+            <div class="form-group">
+              <label>Site</label>
+              <input
+                type="text"
+                id="assignedSite"
+                placeholder="Example: Site B"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Return Date</label>
+              <input type="date" id="returnDate" />
+            </div>
+
+            <button id="assignToolBtn">Assign Tool</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-header">
+            <div>
+              <h2>Tool Inventory</h2>
+              <p class="muted">
+                View, assign, return, delete, import, and export tools.
+              </p>
+            </div>
+
+            <div class="button-group">
+              <input type="file" id="csvInput" accept=".csv" class="hidden" />
+              <button id="importCsvBtn" class="secondary-btn">
+                Import CSV
+              </button>
+              <button id="exportCsvBtn" class="secondary-btn">
+                Export CSV
+              </button>
+              <button id="printReportBtn">Print PDF Report</button>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tool</th>
+                  <th>ID</th>
+                  <th>Status</th>
+                  <th>Assigned To</th>
+                  <th>Site</th>
+                  <th>Return Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="toolTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="reportSection" class="card report-card">
+          <h2>Weekly Tool Usage Report</h2>
+          <p id="reportDate"></p>
+
+          <div class="report-columns">
+            <div>
+              <h3>Tools In Use</h3>
+              <ul id="reportInUse"></ul>
+            </div>
+
+            <div>
+              <h3>Overdue Tools</h3>
+              <ul id="reportOverdue"></ul>
+            </div>
+
+            <div>
+              <h3>Available Tools</h3>
+              <ul id="reportAvailable"></ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="project.js"></script>
+  </body>
+</html>
